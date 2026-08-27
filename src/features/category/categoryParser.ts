@@ -36,6 +36,11 @@ export function parseTitle(
 } {
   const parts = fullTitle.split(CATEGORY_TITLE_DELIMITER);
 
+  if (fullTitle.indexOf('[') !== -1) {
+   const category = fullTitle.substring(fullTitle.indexOf('[')+1, fullTitle.indexOf(']'));
+   return { category: category, subCategory: undefined, title: fullTitle };
+  }
+
   if (parts.length >= 3) {
     // Case: "Category - SubCategory - Title"
     const category = parts[0].trim();
